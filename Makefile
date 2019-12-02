@@ -2,6 +2,7 @@ NOW = $(shell date +%s)
 
 default: gen-go
 	go build .
+	cd examples/hello && go build .
 	
 gen-go:
 	mkdir -p generated/go

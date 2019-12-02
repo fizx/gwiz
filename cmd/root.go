@@ -2,10 +2,11 @@ package cmd
 
 import (
 	"fmt"
-	proto "github.com/fizx/gwiz/generated/go/proto/gwiz"
+	proto "github.com/fizx/gwiz/generated/go/proto"
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"log"
 	"os"
 )
 
@@ -66,7 +67,7 @@ func initConfig() {
 
 	config := new(proto.Config)
 	if err := viper.Unmarshal(config); err != nil {
-		return nil, err
+		log.Fatalf("Cannot parse config: %v", err)
 	}
 
 }
