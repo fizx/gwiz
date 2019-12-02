@@ -20,47 +20,166 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type Config struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+type CommandConfig struct {
+	XXX_NoUnkeyedLiteral struct{} `mapstructure:"-"`
+	XXX_unrecognized     []byte   `mapstructure:"-"`
+	XXX_sizecache        int32    `mapstructure:"-"`
 }
 
-func (m *Config) Reset()         { *m = Config{} }
-func (m *Config) String() string { return proto.CompactTextString(m) }
-func (*Config) ProtoMessage()    {}
-func (*Config) Descriptor() ([]byte, []int) {
+func (m *CommandConfig) Reset()         { *m = CommandConfig{} }
+func (m *CommandConfig) String() string { return proto.CompactTextString(m) }
+func (*CommandConfig) ProtoMessage()    {}
+func (*CommandConfig) Descriptor() ([]byte, []int) {
 	return fileDescriptor_d4fd0bddfb26804b, []int{0}
 }
 
-func (m *Config) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Config.Unmarshal(m, b)
+func (m *CommandConfig) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CommandConfig.Unmarshal(m, b)
 }
-func (m *Config) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Config.Marshal(b, m, deterministic)
+func (m *CommandConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CommandConfig.Marshal(b, m, deterministic)
 }
-func (m *Config) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Config.Merge(m, src)
+func (m *CommandConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CommandConfig.Merge(m, src)
 }
-func (m *Config) XXX_Size() int {
-	return xxx_messageInfo_Config.Size(m)
+func (m *CommandConfig) XXX_Size() int {
+	return xxx_messageInfo_CommandConfig.Size(m)
 }
-func (m *Config) XXX_DiscardUnknown() {
-	xxx_messageInfo_Config.DiscardUnknown(m)
+func (m *CommandConfig) XXX_DiscardUnknown() {
+	xxx_messageInfo_CommandConfig.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Config proto.InternalMessageInfo
+var xxx_messageInfo_CommandConfig proto.InternalMessageInfo
+
+type AppConfig struct {
+	Handlers             []*Handler `protobuf:"bytes,1,rep,name=handlers,proto3" mapstructure:"handlers"`
+	XXX_NoUnkeyedLiteral struct{}   `mapstructure:"-"`
+	XXX_unrecognized     []byte     `mapstructure:"-"`
+	XXX_sizecache        int32      `mapstructure:"-"`
+}
+
+func (m *AppConfig) Reset()         { *m = AppConfig{} }
+func (m *AppConfig) String() string { return proto.CompactTextString(m) }
+func (*AppConfig) ProtoMessage()    {}
+func (*AppConfig) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d4fd0bddfb26804b, []int{1}
+}
+
+func (m *AppConfig) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AppConfig.Unmarshal(m, b)
+}
+func (m *AppConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AppConfig.Marshal(b, m, deterministic)
+}
+func (m *AppConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AppConfig.Merge(m, src)
+}
+func (m *AppConfig) XXX_Size() int {
+	return xxx_messageInfo_AppConfig.Size(m)
+}
+func (m *AppConfig) XXX_DiscardUnknown() {
+	xxx_messageInfo_AppConfig.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AppConfig proto.InternalMessageInfo
+
+func (m *AppConfig) GetHandlers() []*Handler {
+	if m != nil {
+		return m.Handlers
+	}
+	return nil
+}
+
+type Handler struct {
+	Type                 string   `protobuf:"bytes,1,opt,name=type,proto3" mapstructure:"type"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" mapstructure:"name"`
+	Port                 int32    `protobuf:"varint,3,opt,name=port,proto3" mapstructure:"port"`
+	Hostname             string   `protobuf:"bytes,4,opt,name=hostname,proto3" mapstructure:"hostname"`
+	Method               string   `protobuf:"bytes,5,opt,name=method,proto3" mapstructure:"method"`
+	XXX_NoUnkeyedLiteral struct{} `mapstructure:"-"`
+	XXX_unrecognized     []byte   `mapstructure:"-"`
+	XXX_sizecache        int32    `mapstructure:"-"`
+}
+
+func (m *Handler) Reset()         { *m = Handler{} }
+func (m *Handler) String() string { return proto.CompactTextString(m) }
+func (*Handler) ProtoMessage()    {}
+func (*Handler) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d4fd0bddfb26804b, []int{2}
+}
+
+func (m *Handler) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Handler.Unmarshal(m, b)
+}
+func (m *Handler) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Handler.Marshal(b, m, deterministic)
+}
+func (m *Handler) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Handler.Merge(m, src)
+}
+func (m *Handler) XXX_Size() int {
+	return xxx_messageInfo_Handler.Size(m)
+}
+func (m *Handler) XXX_DiscardUnknown() {
+	xxx_messageInfo_Handler.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Handler proto.InternalMessageInfo
+
+func (m *Handler) GetType() string {
+	if m != nil {
+		return m.Type
+	}
+	return ""
+}
+
+func (m *Handler) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Handler) GetPort() int32 {
+	if m != nil {
+		return m.Port
+	}
+	return 0
+}
+
+func (m *Handler) GetHostname() string {
+	if m != nil {
+		return m.Hostname
+	}
+	return ""
+}
+
+func (m *Handler) GetMethod() string {
+	if m != nil {
+		return m.Method
+	}
+	return ""
+}
 
 func init() {
-	proto.RegisterType((*Config)(nil), "Config")
+	proto.RegisterType((*CommandConfig)(nil), "CommandConfig")
+	proto.RegisterType((*AppConfig)(nil), "AppConfig")
+	proto.RegisterType((*Handler)(nil), "Handler")
 }
 
 func init() { proto.RegisterFile("proto/gwiz.proto", fileDescriptor_d4fd0bddfb26804b) }
 
 var fileDescriptor_d4fd0bddfb26804b = []byte{
-	// 54 bytes of a gzipped FileDescriptorProto
+	// 176 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x28, 0x28, 0xca, 0x2f,
-	0xc9, 0xd7, 0x4f, 0x2f, 0xcf, 0xac, 0xd2, 0x03, 0x33, 0x95, 0x38, 0xb8, 0xd8, 0x9c, 0xf3, 0xf3,
-	0xd2, 0x32, 0xd3, 0x93, 0xd8, 0xc0, 0x02, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x32, 0x42,
-	0xa4, 0x60, 0x24, 0x00, 0x00, 0x00,
+	0xc9, 0xd7, 0x4f, 0x2f, 0xcf, 0xac, 0xd2, 0x03, 0x33, 0x95, 0xf8, 0xb9, 0x78, 0x9d, 0xf3, 0x73,
+	0x73, 0x13, 0xf3, 0x52, 0x9c, 0xf3, 0xf3, 0xd2, 0x32, 0xd3, 0x95, 0x0c, 0xb9, 0x38, 0x1d, 0x0b,
+	0x0a, 0x20, 0x1c, 0x21, 0x15, 0x2e, 0x8e, 0x8c, 0xc4, 0xbc, 0x94, 0x9c, 0xd4, 0xa2, 0x62, 0x09,
+	0x46, 0x05, 0x66, 0x0d, 0x6e, 0x23, 0x0e, 0x3d, 0x0f, 0x88, 0x40, 0x10, 0x5c, 0x46, 0xa9, 0x92,
+	0x8b, 0x1d, 0x2a, 0x28, 0x24, 0xc4, 0xc5, 0x52, 0x52, 0x59, 0x90, 0x2a, 0xc1, 0xa8, 0xc0, 0xa8,
+	0xc1, 0x19, 0x04, 0x66, 0x83, 0xc4, 0xf2, 0x12, 0x73, 0x53, 0x25, 0x98, 0x20, 0x62, 0x20, 0x36,
+	0x48, 0xac, 0x20, 0xbf, 0xa8, 0x44, 0x82, 0x59, 0x81, 0x51, 0x83, 0x35, 0x08, 0xcc, 0x16, 0x92,
+	0xe2, 0xe2, 0xc8, 0xc8, 0x2f, 0x2e, 0x01, 0xab, 0x65, 0x01, 0xab, 0x85, 0xf3, 0x85, 0xc4, 0xb8,
+	0xd8, 0x72, 0x53, 0x4b, 0x32, 0xf2, 0x53, 0x24, 0x58, 0xc1, 0x32, 0x50, 0x5e, 0x12, 0x1b, 0xd8,
+	0x17, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0xe2, 0x93, 0x5f, 0x13, 0xd9, 0x00, 0x00, 0x00,
 }

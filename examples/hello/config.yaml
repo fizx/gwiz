@@ -1,0 +1,5 @@
+handlers:
+- name: http
+  type: http
+  port: 3000
+  method: hello

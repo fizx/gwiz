@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	proto "github.com/fizx/gwiz/generated/go/proto"
+	pb "github.com/fizx/gwiz/generated/go/proto"
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -11,6 +11,8 @@ import (
 )
 
 var cfgFile string
+
+var parsedConfig *pb.CommandConfig
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -65,8 +67,7 @@ func initConfig() {
 
 	viper.AutomaticEnv() // read in environment variables that match
 
-	config := new(proto.Config)
-	if err := viper.Unmarshal(config); err != nil {
+	if err := viper.Unmarshal(parsedConfig); err != nil {
 		log.Fatalf("Cannot parse config: %v", err)
 	}
 

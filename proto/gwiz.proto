@@ -1,4 +1,16 @@
 syntax = 'proto3';
 
-message Config {
+message CommandConfig {
+}
+
+message AppConfig {
+  repeated Handler handlers = 1;
+}
+
+message Handler {
+  string type = 1; // "grpc", "http"
+  string name = 2;
+  int32 port = 3;
+  string hostname = 4;
+  string method = 5;
 }

@@ -7,6 +7,8 @@ default: gen-go
 gen-go:
 	mkdir -p generated/go
 	protoc -I/usr/local/include -I. --go_out=plugins=grpc,paths=source_relative:generated/go proto/*.proto
+	sed -i .bak "s/json:/mapstructure:/g" ./generated/go/proto/*.go
+	sed -i .bak "s/,omitempty//g" ./generated/go/proto/*.go
 
 install: default
 	bash -c 'eval $$(minikube docker-env) && docker build -t ffs:latest .'
